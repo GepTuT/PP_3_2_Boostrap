@@ -14,7 +14,7 @@
     <span class="navbar-brand mb-0 h1">
         <a th:text="${user.getEmail()}" style="font-weight: bold; font-size: larger"></a>
         <span class="text-start" style="font-weight: normal; font-size: larger">with roles:
-            <a th:each="role : ${user.getAuthorities()}" th:text="${role} + ' '"
+            <a th:each="role : ${user.getAuthorities()}" th:text="${role.getAuthority().substring(5)} + ' '"
                style="font-weight: normal; font-size: large"></a>
         </span>
     </span>
@@ -99,7 +99,7 @@
                                     <td style="text-align: center; vertical-align: middle; font-size: large"><a
                                             th:text="${user.getEmail()}"></a></td>
                                     <td style="text-align: center; vertical-align: middle; font-size: large "><a
-                                            th:each="role : ${user.getAuthorities()}" th:text="${role} + ' '"></a></td>
+                                            th:each="role : ${user.getAuthorities()}" th:text="${role.getAuthority().substring(5)} + ' '"></a></td>
 
                                     <td style="text-align: center; vertical-align: middle; font-size: large">
                                         <div class="modal fade" tabindex="-1"
@@ -187,7 +187,7 @@
                                                                             th:size="${#sets.size(roles)}">
                                                                         <option
                                                                                 th:each="role : ${roles}"
-                                                                                th:text="${role.toString()}"
+                                                                                th:text="${role.toString().substring(5)}"
                                                                                 th:value="${role.id}"
                                                                                 th:selected="${user.roles.contains(role)}">
                                                                         </option>
@@ -305,7 +305,7 @@
                                                                             th:size="${#sets.size(roles)}">
                                                                         <option
                                                                                 th:each="role : ${roles}"
-                                                                                th:text="${role.toString()}"
+                                                                                th:text="${role.toString().substring(5)}"
                                                                                 th:value="${role.id}"
                                                                                 th:selected="${user.roles.contains(role)}">
                                                                         </option>
@@ -386,7 +386,7 @@
                                                         th:field="*{roles}">
                                                     <option th:each="role : ${roles}"
                                                             th:value="${role.id}"
-                                                            th:text="${role.toString()}">Roles
+                                                            th:text="${role.toString().substring(5)}">Roles
                                                     </option>
                                                 </select>
                                             </div>
